@@ -1,6 +1,6 @@
 
 class Item(object):
-    """The base class for all items"""
+    #The base class for all items
     def __init__(self, name, description):
         self.name = name
         self.description = description
@@ -32,7 +32,7 @@ class Lightning(Spell):
     def __init__(self):
         super().__init__(name="Lightning",
                          description="Hurl a lightning bolt at the enemy",
-                         damage=5,
+                         damage=15,
                          element="yellow")
 
 
@@ -40,7 +40,7 @@ class Fire(Spell):
     def __init__(self):
         super().__init__(name="Fire",
                          description="Launch a fire ball at the enemy",
-                         damage=4,
+                         damage=14,
                          element="red")
 
 
@@ -48,7 +48,7 @@ class Ice(Spell):
     def __init__(self):
         super().__init__(name="Ice",
                          description="impale the enemy with an ice shard",
-                         damage=7,
+                         damage=12,
                          element="blue")
 
 
@@ -71,6 +71,7 @@ class Sword(Weapon):
         super().__init__(name="Sword",
                          description="A sturdy steel sword",
                          damage=15)
+
 
 class Spear(Weapon):
     def __init__(self):

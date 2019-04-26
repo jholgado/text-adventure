@@ -1,14 +1,18 @@
 import random
-from my_pkg import enemies
+from my_pkg import enemies, player
 from my_pkg.player import userinput
 
 
 class Level(object):
     def __init__(self, lvl):
         self.lvl = lvl
-        self.enemyList = [enemies.Goblin("Blue", lvl), enemies.Goblin("Red", lvl), enemies.Goblin("Yellow", lvl)]
+        if lvl >= 3:
+            self.enemyList = [enemies.Goblin("Grey", lvl), enemies.Goblin("Blue", lvl), enemies.Goblin("Red", lvl), enemies.Goblin("Yellow", lvl),
+                              enemies. Ogre("Grey", lvl), enemies.Ogre("Blue", lvl), enemies.Ogre("Red", lvl), enemies.Ogre("Yellow", lvl)]
+        else:
+            self.enemyList = [enemies.Goblin("Grey", lvl), enemies.Goblin("Blue", lvl), enemies.Goblin("Red", lvl), enemies.Goblin("Yellow", lvl)]
 
-    def battle(self, plyr):
+    def battle(self, plyr):   #logic for flow of battle encounter
         enemy = random.choice(self.enemyList)
         print("a {} has appeared\n".format(enemy.name))
         while plyr.is_alive() and enemy.is_alive():
@@ -30,7 +34,7 @@ class Level(object):
                 enemy.attack(plyr)
 
 
-
-#curr_lvl = Level(1)
-#player = player.Player()
-#curr_lvl.battle(player)
+if __name__ == '__main__':
+    curr_lvl = Level(1)
+    player = player.Player()
+    curr_lvl.battle(player)

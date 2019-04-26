@@ -11,8 +11,8 @@ def userinput(prompt, valid):
 
 class Player(object):
     def __init__(self):
-        self.weapons = {"rock" : items.Rock()}# "dagger" : items.Dagger(), "sword" : items.Sword()}
-        self.magic = {}#"fire" : items.Fire(), "ice" : items.Ice(), "lightning" : items.Lightning()}
+        self.weapons = {"rock" : items.Rock()}
+        self.magic = {}
         self.m_atk = 2
         self.p_atk = 2
         self.hp = 100
@@ -22,8 +22,8 @@ class Player(object):
         return self.hp > 0
 
     def lvl_up(self):
-        self.m_atk = 2 * self.m_atk
-        self.p_atk = 3 * self.p_atk
+        self.m_atk = math.ceil(1.4 * self.m_atk)
+        self.p_atk = math.ceil(1.5 * self.p_atk)
         self.max_hp = math.ceil(1.2 * self.max_hp)
         print("You leveled up!\n")
         print("Max HP: {}".format(self.max_hp))
@@ -54,6 +54,9 @@ class Player(object):
         return True
 
     def cast(self, enemy):
+        if not self.magic:
+            print("you have no spells to use\n")
+            return False
         print("choose a spell to use")
         print("Spells:")
         for i in self.magic:
@@ -75,7 +78,7 @@ class Player(object):
 
 if __name__ == '__main__':
     player = Player()
-    enemy = enemies.RedGoblin()
+    enemy = enemies.Goblin(color="Grey")
     done = player.attack(enemy)
     print(done)
     print(enemy.hp)
