@@ -1,10 +1,12 @@
-import enemies, player, random
-from player import userinput
+import random
+from my_pkg import enemies
+from my_pkg.player import userinput
+
 
 class Level(object):
     def __init__(self, lvl):
         self.lvl = lvl
-        self.enemyList = [enemies.BlueGoblin(lvl), enemies.RedGoblin(lvl), enemies.YellowGoblin(lvl)]
+        self.enemyList = [enemies.Goblin("Blue", lvl), enemies.Goblin("Red", lvl), enemies.Goblin("Yellow", lvl)]
 
     def battle(self, plyr):
         enemy = random.choice(self.enemyList)
@@ -12,26 +14,21 @@ class Level(object):
         while plyr.is_alive() and enemy.is_alive():
             done = False
             while not done:
-
-                print("{}: {} hp".format(enemy.name, enemy.hp))
-                action = userinput("enter action: \nattack \nmagic \ninventory\n", {"attack", "magic", "inventory"})
+                print("Player: {} hp".format(plyr.hp))
+                print("{}: {} hp\n".format(enemy.name, enemy.hp))
+                action = userinput("enter action: \nattack \nmagic \nstatus\n", {"attack", "magic", "status"})
                 if action == "attack":
                     done = plyr.attack(enemy)
                 elif action == "magic":
                     done = plyr.cast(enemy)
-                #elif action == "inventory":
-
-
+                elif action == "status":
+                    plyr.status()
 
             if not enemy.is_alive():
                 print("the {} dies\n".format(enemy.name))
             else:
                 enemy.attack(plyr)
-            print("Player: {}/{} hp".format(plyr.hp, plyr.max_hp))
-            print("{}: {} hp".format(enemy.name, enemy.hp))
 
-        if not plyr.is_alive():
-            print("YOU DIED\n")
 
 
 #curr_lvl = Level(1)
