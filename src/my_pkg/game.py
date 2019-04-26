@@ -2,6 +2,7 @@ from my_pkg.player import Player, userinput
 from my_pkg import level, items
 
 
+# main game driving code including text intro and short explanation
 def play():
     print("Welcome to the Tower of Trials")
     print("Do you wish to enter and test your might? (yes/no)")
@@ -37,5 +38,6 @@ def play():
             i += 1
     print("YOU DIED")
     print("Floors Completed: " + str(i-1))
+
 
 play()

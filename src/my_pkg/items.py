@@ -1,6 +1,6 @@
 
 class Item(object):
-    #The base class for all items
+    # The base class for all items (originally intended for more than just weapons and spells)
     def __init__(self, name, description):
         self.name = name
         self.description = description
